@@ -21,7 +21,7 @@ In a **P2P architecture**, there is minimal (or no) reliance on dedicated server
 
 We mention that some applications have **hybrid architectures**, combining both client-server and P2P elements. For example, for many instant messaging applications, servers are used to track the IP addresses of users, but user-to-user messages are sent directly between user hosts (without passing through intermediate servers).
 
-![image-20190314210438578](/Users/xiehang/Library/Application Support/typora-user-images/image-20190314210438578.png)
+![image-20190314210438578](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.2.png)
 
 One of the most compelling features of P2P architectures is their **self-scalability**. For example, in a P2P file-sharing application, although each peer generates workload by requesting files, each peer also adds service capacity to the system by distributing files to other peers. P2P architectures are also **cost effective**, since they normally don’t require significant server infrastructure and server bandwidth (in contrast with clients-server designs with datacenters).
 
