@@ -51,7 +51,7 @@ A process sends messages into, and receives messages from, the network through a
 
 Figure 2.3 illustrates socket communication between two processes that communicate over the Internet. As shown in this figure, **a socket is the interface between the application layer and the transport layer within a host**. It is also referred to as the **Application Programming Interface (API)** between the application and the network. 
 
-![image-20190314212235830](/Users/xiehang/Library/Application Support/typora-user-images/image-20190314212235830.png)
+![image-20190314212235830](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.3.png)
 
 The application developer has control of everything on the application-layer side of the socket but has little control of the transport-layer side of the socket. The only control that the application developer has on the transport-layer side is: 
 
@@ -95,7 +95,7 @@ A transport protocol can provide an application with one or more security servic
 
 The Internet provides two transport protocols available to applications: UDP and TCP. Before we create a new network application, the first thing we should do is to decide whether to use UDP or TCP. The following figure shows the service requirements for some selected applications: 
 
-![image-20190314220316637](/Users/xiehang/Library/Application Support/typora-user-images/image-20190314220316637.png)
+![image-20190314220316637](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.4.png)
 
 #### TCP Services
 
@@ -127,7 +127,7 @@ UDP is a no-frills, lightweight transport protocol, providing minimal services.
 
 TCP and UDP doesn't provide throughput or timing guarantees, services not provided by today's Internet transport protocols. We therefore design applications to cope, to the greatest extent possible, with this lack of guarantee. 
 
-![image-20190314223225104](/Users/xiehang/Library/Application Support/typora-user-images/image-20190314223225104.png)
+![image-20190314223225104](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.5.png)
 
 ### 2.1.5 Application-Layer Protocols
 
@@ -169,7 +169,7 @@ has  www.someSchool.edu for a hostname and /someDepartment/picture.gif for a pat
 
 HTTP defines how Web clients request Web pages from Web servers and how servers transfer Web pages to clients. Below illustrates the basic idea of the interaction between server and client. 
 
-![image-20190315084611688](/Users/xiehang/Library/Application Support/typora-user-images/image-20190315084611688.png)
+![image-20190315084611688](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.6.png)
 
 **HTTP uses TCP as its underlying transport protocol**. The HTTP client first initiates a TCP connection with the server. Once the connection is established, the browser and the server processes access TCP through their socket interfaces. As described in Section 2.1, on the client side the socket interface is the door between the client process and the TCP connection; on the server side it is the door between the server process and the TCP connection. 
 
@@ -217,7 +217,7 @@ In the steps above, we actually vague about whether the client obtain 10 JPEGs o
 
 Now consider what happens when a user clicks on a hyperlink. As shown in Figure 2.7, this causes the browser to initiate a TCP connection between the browser and the Web server; this involves a “three-way handshake”—the client sends a small TCP segment to the server, the server acknowledges and responds with a small TCP segment, and, finally, the client acknowledges back to the server. The first two parts of the three-way handshake take one RTT. After completing the first two parts of the handshake, the client sends the HTTP request message combined with the third part of the three-way handshake (the acknowledgment) into the TCP connection. Once the request message arrives at the server, the server sends the HTML file into the TCP connection. This HTTP request/response eats up another RTT. **Thus, roughly, the total response time is two RTTs plus the transmission time at the server of the HTML file.**
 
-![image-20190315093617803](/Users/xiehang/Library/Application Support/typora-user-images/image-20190315093617803.png)
+![image-20190315093617803](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.7.png)
 
 #### HTTP with Persistent Connections
 
@@ -255,7 +255,7 @@ Accept-language: fr
 
 The general format of a request message, as shown in Figure 2.8 (cr -> carriage return, lf -> line feed): 
 
-![image-20190315101121986](/Users/xiehang/Library/Application Support/typora-user-images/image-20190315101121986.png)
+![image-20190315101121986](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.8.png)
 
 After header lines, there is an entity body. The entity body is empty with the `GET` method, but is used with the `POST` method. The  `POST` method is usually used when the user fill out a form. With a POST message, the user is still requesting a Web page from the server, but the specific contents of the Web page depend on what the user entered into the form fields. 
 
@@ -305,7 +305,7 @@ Content-Type: text/html
 
 General format of a response message: 
 
-![image-20190315104853149](/Users/xiehang/Library/Application Support/typora-user-images/image-20190315104853149.png)
+![image-20190315104853149](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.9.png)
 
 Some common status codes:
 
@@ -326,7 +326,7 @@ Cookie has 4 components:
 3. a cookie file kept on the user’s end system and managed by the user’s browser
 4. a back-end database at the Web site
 
-![image-20190315111106329](/Users/xiehang/Library/Application Support/typora-user-images/image-20190315111106329.png)
+![image-20190315111106329](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.10.png)
 
 User connects to website using cookies:
 
@@ -379,13 +379,13 @@ In a typical FTP session, the user is sitting in front of one host (the local ho
 
 The user first provides the hostname of the remote host, causing the FTP client process in the local host to establish a TCP connection with the FTP server process in the remote host. The user then provides the user identification and password, which are sent over the TCP connection as part of FTP commands. Once the server has authorized the user, the user copies one or more files stored in the local file system into the remote file system (or vice versa).
 
-![image-20190318092219842](/Users/xiehang/Library/Application Support/typora-user-images/image-20190318092219842.png)
+![image-20190318092219842](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.14.png)
 
 **HTTP and FTP are both file transfer protocols and both run on top of TCP.** However, the most striking difference is that FTP uses two parallel TCP connections to transfer a file, a **control connection** and a **data
 connection**. The control connection is used for sending control information between the two hosts—information such as user identification, password, commands to change remote directory, and commands to “put” and “get” files. The data connection is used to actually send a file. Because FTP uses a separate control connection, FTP is said to send its control information **out-of-band**. HTTP then sends request
 and response header lines into the same TCP connection that carries the transferred file itself. For this reason, HTTP is said to send its control information **in-band**. **SMTP, the main protocol for electronic mail, also sends control information in-band.** 
 
-![image-20190318092706073](/Users/xiehang/Library/Application Support/typora-user-images/image-20190318092706073.png)
+![image-20190318092706073](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.15.png)
 
 When a user starts an FTP session with a remote host, the client side of FTP (user) first initiates a control TCP connection with the server side (remote host) on **server port number 21**. The client side of FTP sends the user identification and password over this control connection. The client side of FTP also sends, over the control connection, commands to change the remote directory. When the server side receives a command for a file transfer over the control connection (either to, or from, the remote host), the server side initiates a TCP data connection to the client side. **FTP sends exactly one file over the data connection and then closes the data connection.** If user wants to transfer another file, FTP opens another data connection. Thus, with FTP, the control connection remains open throughout the duration of the user session, but a new data connection is created for each file transferred within a session (that is, the data connections are **non-persistent**).
 
@@ -420,7 +420,7 @@ Some typical replies:
 
 Three major components of Internet mail system: **user agents**, **mail servers** and the **Simple Mail Transfer Protocol (SMTP)**.
 
-![image-20190318095611763](/Users/xiehang/Library/Application Support/typora-user-images/image-20190318095611763.png)
+![image-20190318095611763](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.16.png)
 
 A typical message starts its journey in the sender’s user agent, travels to the sender’s mail server, and travels to the recipient’s mail server, where it is deposited in the recipient’s mailbox. The mail server containing receivers' mailbox  authenticates receiver (with usernames and passwords) when receiver wants to access mailbox. 
 
@@ -443,7 +443,7 @@ To illustrate the basic operation of SMTP, let’s walk through a common scenari
 5. At Bob’s mail server, the server side of SMTP receives the message. Bob’s mail server then places the message in Bob’s mailbox. 
 6. Bob invokes his user agent to read the message at his convenience. 
 
-![image-20190318101728629](/Users/xiehang/Library/Application Support/typora-user-images/image-20190318101728629.png)
+![image-20190318101728629](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.17.png)
 
 It is important to observe that **SMTP does not normally use intermediate mail servers for sending mail**, even when the two mail servers are located at opposite ends of the world. Suppose Alice's mail server is in Hongkong and Bob’s server is in St. Louis, the TCP connection is a direct connection between the Hong Kong and St. Louis servers. Even if Bob's server is down, the message remains in Alice’s mail server and waits for a new attempt—the message does not get placed in some intermediate mail server.
 
@@ -519,7 +519,7 @@ Let’s consider the path an e-mail message takes when it is sent from Alice to 
 
 **Why the two-step procedure?** Primarily because without relaying through Alice’s mail server, Alice’s user agent doesn’t have any recourse to an unreachable destination mail server. By having Alice first deposit the e-mail in her own mail server, Alice’s mail server can repeatedly try to send the message to Bob’s mail server, say every 30 minutes, until Bob’s mail server becomes operational. (And if Alice’s mail server is down, then she has the recourse of complaining to her system administrator!)
 
-![image-20190318110838804](/Users/xiehang/Library/Application Support/typora-user-images/image-20190318110838804.png)
+![image-20190318110838804](https://github.com/xiedaxia1hao/Computer-Networking-Notes/blob/master/Chapter2/Figure2.18.png)
 
 From figure 2.18 we can see that SMTP does two jobs:
 
